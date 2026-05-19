@@ -1,0 +1,22 @@
+name: Debug with Upterm
+
+on:
+  workflow_dispatch:  # Cho phép chạy manual
+  push:
+    branches: [ main ]
+
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4  # Update lên v4 mới nhất
+
+      - name: Setup Upterm session
+        uses: owenthereal/action-upterm@v1
+        # Optional: Thêm các tùy chọn bảo mật/timeout nếu cần
+        # with:
+        #   limit-access-to-actor: true   # Chỉ người trigger workflow mới connect được (dùng SSH key từ GitHub profile)
+        #   wait-timeout-minutes: 15      # Tự shutdown nếu không ai connect sau 15 phút (tiết kiệm minutes)
+        
